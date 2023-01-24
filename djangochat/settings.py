@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/rooms/'
+LOGIN_URL = '/login/'
 
 # Application definition
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'channels',
     'core',
+    'room',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +76,12 @@ TEMPLATES = [
 #for long running connection
 WSGI_APPLICATION = "djangochat.wsgi.application"
 ASGI_APPLICATION = "djangochat.asgi.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
